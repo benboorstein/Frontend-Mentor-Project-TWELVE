@@ -14,6 +14,11 @@ That way, you can intuitively pick the right one for any context."
 /* Remember I worked with FEM's mobile demo at zoom [N/A this time]. */
 
 /* Always use this, as Brian Holt advises. It makes the size ("width", for example) of every element equal to the element's content + its padding + its border, and not inclusive of margin of course. */
+
+/********************
+NOTE: Because I wasn't taking the CSS seriously for this project (the point was mainly to work on the JS), I basically put what I'd put in the desktop viewport in the mobile viewport instead. Just be aware of that in case I come back to this project and try to do the CSS for real.
+********************/
+
 * {
     box-sizing: border-box;
 }
@@ -25,16 +30,206 @@ html, body {
 
 body {
     font-family: 'Manrope', sans-serif;
-    padding: ;
+    padding: 50px 300px;
 }
 
 /****************************************
 header
 ****************************************/
 
+header {
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    margin: 0 0 25px 0;
+}
+
 /****************************************
 main
 ****************************************/
+
+main {
+    background-color: lightblue;
+    padding: 25px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.main-top {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.pageviews-words {
+    text-transform: uppercase;
+}
+
+.main-top ul:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-top ul:first-child li:last-child {
+    display: flex;
+    align-items: center;
+}
+
+.dollar-sign, .price {
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.price {
+    margin-right: 11px;
+}
+
+.subscription-period {
+    margin-left: 4px;
+}
+
+.range-form {
+    align-self: center;
+}
+
+#points {
+    width: 350px;
+    cursor: pointer;
+}
+
+.billing-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.billing-options li:first-child {
+    margin-right: 20px;
+}
+
+.billing-options li:last-child {
+    margin-left: 20px;
+}
+
+/* I'm just doing quick CSS in this project but note that the way I've done this rule is a gross shortcut! */
+.discount {
+    color: orange;
+    text-align: right;
+    margin-top: -44px;
+    margin-right: 160px;
+}
+
+/********** The Toggle - BEGINS here **********/
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/********** The Toggle - ENDS here **********/
+
+/* Making a line without any HTML (e.g., <hr>) for it. */
+/* Note that the reason the line doesn't look 100% wide is because of the padding I have on <body>. */
+.main-top::after {
+    cursor: auto;
+    content: '';
+    display: block;
+    border-bottom: 1.5px solid hsl(210, 50%, 95%);
+    margin-top: 40px;
+}
+
+.main-bottom div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-bottom ul {
+    font-size: 13px;
+}
+
+.main-bottom img {
+    margin-right: 15px;
+}
+
+.start-trial-btn {
+    cursor: pointer;
+    background-color: hsl(227, 35%, 25%);
+    border: none;
+    color: hsl(223, 50%, 87%);
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    letter-spacing: .5px;
+    padding: 14px 40px;
+    border-radius: 40px;
+}
 
 /****************************************
 footer

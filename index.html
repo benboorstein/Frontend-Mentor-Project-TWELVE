@@ -23,25 +23,44 @@
     <title>Frontend Mentor | Interactive pricing component</title>
   </head>
   <body>
-    Simple, traffic-based pricing
-    Sign-up for our 30-day trial. No credit card required. 
-  
-    Pageviews
-    $ /month
-  
-    Monthly Billing
-    Yearly Billing 25% discount
-  
-    Unlimited websites
-    100% data ownership
-    Email reports
-  
-    Start my trial
     <header>
-           
+        <div>
+            <h1>Simple, traffic-based pricing</h1>
+            <p>Sign-up for our 30-day trial. No credit card required.</p>
+        </div>
     </header>
     <main>
-
+        <section class="main-top">
+            <ul>
+                <li><span class="pageviews-num">100</span><span class="pageviews-words">K Pageviews</span></li>
+                <li><span class="dollar-sign">$</span><span class="price">22.00</span>/<span class="subscription-period">month</span></li>
+            </ul>
+            <form class="range-form">
+                <label for="points"></label>
+                <input type="range" id="points" name="points" min="0" max="10"> <!-- <input type="range"> is known as a "slider". The line part is known as the "track" and the ball part is known as the "thumb". -->
+            </form>
+            <ul class="billing-options">
+                <li>Monthly Billing</li>
+                <li>
+                    <label class="switch">
+                        <input type="checkbox" id="monthly-yearly-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+                <li>Yearly Billing</li>
+            </ul>
+            <p class="discount">25% discount</p>
+        </section>
+        <section class="main-bottom">
+            <div>
+                <ul>
+                    <li><img src="./assets/img/icon-check.svg" alt="">Unlimited websites</li>
+                    <li><img src="./assets/img/icon-check.svg" alt="">100% data ownership</li>
+                    <li><img src="./assets/img/icon-check.svg" alt="">Email reports</li>
+                </ul>
+                <a href="#" target="_blank"><button class="start-trial-btn">Start my trial</button></a>
+            </div>
+        </section>
     </main>
     <footer>
       <p class="attribution">
