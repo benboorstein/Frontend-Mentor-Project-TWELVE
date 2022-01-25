@@ -78,30 +78,58 @@ const mappings = [
     }
 ]
 
+// WORKS but PROBABLY not optimal
 slider.addEventListener('change', () => {
-    mappings.forEach((obj, i) => {
-        manageStuff(obj, i)
-    })
+    manageStuff()
 })
 
 toggle.addEventListener('click', function() {
-    mappings.forEach((obj, i) => {
-        manageStuff(obj, i)
-    })
+    manageStuff()
 })
 
-function manageStuff(object, index) {
+function manageStuff() {
     if (toggle.checked === false) {
-        if (slider.value === index.toString()) {
-            views.textContent = (object.pageviews).toString()
-            price.textContent = (object.monthlyPrice).toFixed(2)
-            subscriptionPeriod.textContent = 'month'
-        }
+        updateText(mappings, 'month', 1, 1)
     } else {
-        if (slider.value === index.toString()) {
-            views.textContent = (object.pageviews).toString()
-            price.textContent = (object.monthlyPrice * 12 * .75).toFixed(2)
-            subscriptionPeriod.textContent = 'year'
-        }
+        updateText(mappings, 'year', 12, .75)
     }
 }
+
+function updateText(arr, subscriptionText, n1, n2) {
+    arr.forEach((obj, i) => {
+        if (slider.value === i.toString()) {
+            views.textContent = (obj.pageviews).toString()
+            price.textContent = (obj.monthlyPrice * n1 * n2).toFixed(2)
+            subscriptionPeriod.textContent = subscriptionText
+        }
+    })
+}
+
+
+
+// // WORKS but DEFINITELY not optimal
+// slider.addEventListener('change', () => {
+//     manageStuff(mappings)
+// })
+
+// toggle.addEventListener('click', function() {
+//     manageStuff(mappings)
+// })
+
+// function manageStuff(arr) {
+//     arr.forEach((obj, i) => {
+//         if (toggle.checked === false) {
+//             if (slider.value === i.toString()) {
+//                 views.textContent = (obj.pageviews).toString()
+//                 price.textContent = (obj.monthlyPrice).toFixed(2)
+//                 subscriptionPeriod.textContent = 'month'
+//             }
+//         } else {
+//             if (slider.value === i.toString()) {
+//                 views.textContent = (obj.pageviews).toString()
+//                 price.textContent = (obj.monthlyPrice * 12 * .75).toFixed(2)
+//                 subscriptionPeriod.textContent = 'year'
+//             }
+//         }
+//     })
+// }
