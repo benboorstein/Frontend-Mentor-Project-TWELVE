@@ -78,36 +78,101 @@ const mappings = [
     }
 ]
 
-// WORKS but PROBABLY not optimal
-slider.addEventListener('change', () => {
-    manageStuff()
-})
+// // fifth iteration - works
+// slider.addEventListener('change', updateText)
+// toggle.addEventListener('click', updateText)
 
-toggle.addEventListener('click', function() {
-    manageStuff()
-})
+// const subscriptionInfo = [
+//     {
+//         timePeriod: 'month',
+//         months: 1,
+//         ofMonthlyPrice: 1
+//     },
+//     {
+//         timePeriod: 'year',
+//         months: 12,
+//         ofMonthlyPrice: .75
+//     }
+// ]
 
-function manageStuff() {
-    if (toggle.checked === false) {
-        updateText(mappings, 'month', 1, 1)
+// function updateText(event) {
+//     const object = mappings.find(obj => mappings.indexOf(obj) === +slider.value) 
+//     views.textContent = (object.pageviews).toString()
+
+//     // note exactly how '+event.target.checked' and '+toggle.checked' are used as boolean values (this is why Robert had me explore this way of writing the below code)
+//     if (event.target.type === 'checkbox') {
+//         price.textContent = (object.monthlyPrice * subscriptionInfo[+event.target.checked].months * subscriptionInfo[+event.target.checked].ofMonthlyPrice).toFixed(2)
+//         subscriptionPeriod.textContent = subscriptionInfo[+event.target.checked].timePeriod
+//     } else { // i.e., if the 'event.target.type' is 'range'
+//         price.textContent = (object.monthlyPrice * subscriptionInfo[+toggle.checked].months * subscriptionInfo[+toggle.checked].ofMonthlyPrice).toFixed(2)
+//         subscriptionPeriod.textContent = subscriptionInfo[+toggle.checked].timePeriod
+//     }
+// }
+
+
+// fourth iteration - works
+slider.addEventListener('change', updateText)
+toggle.addEventListener('click', updateText)
+
+function updateText() {
+    const object = mappings.find(obj => mappings.indexOf(obj) === +slider.value) 
+    views.textContent = (object.pageviews).toString()
+
+    if (toggle.checked) {
+        price.textContent = (object.monthlyPrice * 12 * .75).toFixed(2)
+        subscriptionPeriod.textContent = 'year'
     } else {
-        updateText(mappings, 'year', 12, .75)
+        price.textContent = (object.monthlyPrice).toFixed(2)
+        subscriptionPeriod.textContent = 'month'
     }
 }
 
-function updateText(arr, subscriptionText, n1, n2) {
-    arr.forEach((obj, i) => {
-        if (slider.value === i.toString()) {
-            views.textContent = (obj.pageviews).toString()
-            price.textContent = (obj.monthlyPrice * n1 * n2).toFixed(2)
-            subscriptionPeriod.textContent = subscriptionText
-        }
-    })
-}
+
+// // third iteration - works
+// slider.addEventListener('change', () => { manageStuff() })
+
+// toggle.addEventListener('click', function() { manageStuff() })
+
+// function manageStuff() {
+//     if (toggle.checked === false) {
+//         updateText('month', 1, 1)
+//     } else {
+//         updateText('year', 12, .75)
+//     }
+// }
+
+// function updateText(subscriptionText, n1, n2) {
+//     const getObj = mappings.find(obj => mappings.indexOf(obj) === +slider.value)
+//     views.textContent = (getObj.pageviews).toString()
+//     price.textContent = (getObj.monthlyPrice * n1 * n2).toFixed(2)
+//     subscriptionPeriod.textContent = subscriptionText
+// }
 
 
+// // second iteration - works
+// slider.addEventListener('change', manageStuff)
+// toggle.addEventListener('click', manageStuff)
 
-// // WORKS but DEFINITELY not optimal
+// function manageStuff() {
+//     if (toggle.checked === false) {
+//         updateText(mappings, 'month', 1, 1)
+//     } else {
+//         updateText(mappings, 'year', 12, .75)
+//     }
+// }
+
+// function updateText(arr, subscriptionText, n1, n2) {
+//     arr.forEach((obj, i) => {
+//         if (slider.value === i.toString()) {
+//             views.textContent = (obj.pageviews).toString()
+//             price.textContent = (obj.monthlyPrice * n1 * n2).toFixed(2)
+//             subscriptionPeriod.textContent = subscriptionText
+//         }
+//     })
+// }
+
+
+// // first iteration - works
 // slider.addEventListener('change', () => {
 //     manageStuff(mappings)
 // })
